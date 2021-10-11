@@ -68,65 +68,6 @@ namespace johndoe.QuakeMap
                 return "case";
         }
 
-        public static void ToCoDMap(string input, string output)
-        {
-            List<Entity> ents = Entity.parseMap(input);
-
-            using (StreamWriter file = File.CreateText(output))
-            {
-                file.WriteLine("iwmap 4");
-
-                foreach (Entity ent in ents)
-                {
-                    file.WriteLine("{");
-                    foreach (KeyValuePair<string, string> kvp in ent.keyValues)
-                        file.WriteLine($"\"{kvp.Key}\" \"{kvp.Value}\"");
-
-                    foreach (Brush brush in ent.brushes)
-                    {
-                        file.WriteLine("{");
-
-                        foreach (BrushFace face in brush.faces)
-                        {
-                            file.WriteLine(
-                                $"( {face.p1} ) ( {face.p2} ) ( {face.p3} ) {FixTexture(face.texture)}"
-                                + " " + (face.xScale * 512).ToString().Replace(",", ".")
-                                + " " + (face.yScale * 512).ToString().Replace(",", ".")
-                                + " " + face.xShift.ToString().Replace(",", ".")
-                                + " " + face.yShift.ToString().Replace(",", ".")
-                                + " " + face.rotation.ToString().Replace(",", ".")
-                                + " 0 lightmap_gray 16384 16384 0 0 0 0"
-                            );
-                        }
-
-                        file.WriteLine("}");
-                    }
-
-                    foreach (Patch patch in ent.patches)
-                    {
-                        file.WriteLine("{");
-                        file.WriteLine("curve");
-                        file.WriteLine("{");
-                        file.WriteLine(FixTexture(patch.texture));
-                        file.WriteLine("lightmap_gray");
-                        file.WriteLine($"{patch.rows} {patch.cols} 16 8");
-                        foreach (List<PatchVert> vertList in patch.verts)
-                        {
-                            file.WriteLine("(");
-                            foreach (PatchVert vert in vertList)
-                                file.WriteLine($"v {vert.pos} t {vert.uv * 1024}");
-                            file.WriteLine(")");
-                        }
-                        file.WriteLine("}");
-                        file.WriteLine("}");
-                    }
-
-                    file.WriteLine("}");
-                }
-            }
-
-        }
-
         public static void ToObj(List<Entity> ents, string path)
         {
             ObjModel obj = new ObjModel();
