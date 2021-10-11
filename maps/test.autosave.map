@@ -1,0 +1,19 @@
+
+// entity 0
+{
+"classname" "worldspawn"
+// brush 0
+{
+( 64 64 64 ) ( 64 -64 64 ) ( -64 64 64 ) dev/dev_measurecrate01 32 32 0 2 2 0 0 0
+( 64 64 64 ) ( -64 64 64 ) ( 64 64 -64 ) dev/dev_measurecrate01 0 0 0 0.5 0.5 0 0 0
+( 448 32 80 ) ( 448 32 -48 ) ( 448 -96 80 ) dev/dev_measurecrate01 0 240.5415649414 0 0.5 0.1024751663 0 0 0
+( -64 -64 -64 ) ( 64 -64 -64 ) ( -64 64 -64 ) dev/dev_measurecrate01 31 69 0 1 0.5 0 0 0
+( -48 -448 -80 ) ( -48 -448 48 ) ( 80 -448 -80 ) dev/dev_measurecrate01 20.9540405273 6.4640197754 -38.3527946472 0.5 0.5 0 0 0
+( -64 -64 -64 ) ( -64 64 -64 ) ( -64 -64 64 ) dev/dev_measurecrate01 128 128 0 0.5 0.5 0 0 0
+}
+}
+// entity 1
+{
+"classname" "info_player_start"
+"origin" "0 0 96"
+}
